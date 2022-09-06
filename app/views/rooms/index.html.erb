@@ -1,0 +1,38 @@
+<% if flash[:notice] %>
+    <div class="flash flash-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<div class = "room-index">
+
+    <h2>登録済ルーム一覧</h2>
+
+    <table class = "table-index">
+        <thead>
+            <tr>
+                <th>ルーム画像</th>
+                <th>ルーム名</th>
+                <th>ルーム紹介</th>
+                <th>料金</th>
+                <th>作成日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @rooms.each do |room| %>
+                <tr class = "table-index-contents">
+                    <td class = "room-pic"><%= link_to image_tag(room.room_pic.url), room %></td>
+                    <td class = "room-name"><%= link_to "#{room.room_name}", room %></td>
+                    <td class = "room-introduction"><%= room.room_introduction %></td>
+                    <td>¥ <%= room.room_charge %></td>
+                    <td><%= room.created_at.to_s(:datetime_jp) %></td>
+                    <td><%= link_to "削除", room, method: :delete, data: {confirm: "本当に削除しますか？"} %></td>
+                </tr>
+
+            <% end %>
+
+        </tbody>
+
+    </table>
+
+</div>

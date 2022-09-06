@@ -1,0 +1,34 @@
+<div class = "reservation-confirm">
+    <div class = "reservation-confirm-contents">
+        <h2>予約内容確認</h2>
+        <h3>¥ <%= @room.room_charge %> / 日</h3>
+
+        <%= form_with model: @reservation do |f| %>
+            <% # 前回入力したパラメータはhiddenで記載しないと拾えない？ %>
+            <%= f.hidden_field :start_day, value: @reservation.start_day %>
+            <%= f.hidden_field :end_day, value: @reservation.end_day %>
+            <%= f.hidden_field :people, value: @reservation.people %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.hidden_field :total_price, value: @total_price %>            
+            <%= f.hidden_field :created_at, value: @reservation.created_at %>
+            <%= f.hidden_field :updated_at, value: @reservation.updated_at %>
+            
+
+            <%= f.label :start_day, "開始日" %>
+            <%= f.date_field :start_day, disabled: true, class: "confirm-input-area" %>
+            <%= f.label :end_day, "終了日" %>
+            <%= f.date_field :end_day, disabled: true, class: "confirm-input-area" %>
+            <div class = "total_day">使用日数：<%= @total_day %> 日</div>
+            <div class = "people">人数：<%= @reservation.people %> 人</div>
+            <%= f.label :total_price, "合計金額" %>
+            <%= f.text_field :total_price, value: @total_price, disabled: true, class: "confirm-input-area" %>
+            <p>上記内容でよろしければ「予約を確定」を押してください</p>
+
+            <%= f.submit "予約を確定", class: "reservation-btn" %>
+            <%= link_to "ルーム詳細に戻る", room_path(@room.id), class: "return-room-index-btn" %>
+
+        <% end %>
+
+    </div>
+
+</div>

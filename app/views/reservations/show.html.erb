@@ -1,0 +1,29 @@
+<% if flash[:notice] %>
+    <div class="flash flash-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<div class = "reservation-complete">
+    <div class = "reservation-complete-contents">
+        <div class = "row">
+            <label>予約した部屋</label>
+            <div><%= link_to "#{@room.room_name}", room_path(@room.id), class: "room-complete-room-name" %></div>
+        </div>
+        <div class = "row">
+            <label>開始日</label>
+            <div><%= @reservation.start_day %></div>
+        </div>
+        <div class = "row">
+            <label>終了日</label>
+            <div><%= @reservation.end_day %></div>
+        </div>
+        <div class = "row-bottom">
+            <label>価格</label>
+            <div><%= @reservation.total_price %> 円</div>
+        </div>
+    </div>
+
+</div>
+
+

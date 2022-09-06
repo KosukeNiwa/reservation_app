@@ -1,0 +1,30 @@
+<div class = "account">
+    <div class = "account-container">
+        <%= render "shared/sidebar" %>
+
+        <div class = "account-center">
+        
+        </div>
+        
+        <div class = "account-right">
+            <div class = "account-contents">
+                <h5>アカウント</h5>
+                <div class = "email-row">
+                    <label>メールアドレス</label>
+                    <div class = "user-email"><%= @user.email %></div>
+                </div>
+                <div class = "password-row">
+                    <label>パスワード</label>
+                    <div class = "user-password">***************</div>
+                </div>
+                <div class = "edit-btn-row">
+                    <%= link_to "編集", edit_user_registration_path, class: "edit-btn" %>  
+                </div>
+
+            </div>
+        
+        </div>
+    
+    </div>
+
+</div>
