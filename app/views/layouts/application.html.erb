@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head></head>
     <title>ReservationApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +11,66 @@
   </head>
 
   <body>
+    <header>
+      <div class = "header-left">
+        <div class="header-logo">
+          <%= link_to image_tag("https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"), home_top_path %>
+        </div>
+        <div class = "area-search-bar">
+          <%= form_with url: rooms_search_path, method: :get do |f| %>
+            <%= f.text_field :area, class: "search-bar", placeholder: "エリア" %>
+            <i class="fa-solid fa-map-location-dot bar-logo"></i>
+          <% end %>
+        </div>
+        <div class = "keyword-search-bar">
+          <%= form_with url: rooms_search_path, method: :get do |f| %>
+            <%= f.text_field :keyword, class: "search-bar", placeholder: "キーワード" %>
+            <i class="fa-solid fa-magnifying-glass bar-logo"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="header-list">
+        <% if user_signed_in? %>
+          <div class = "login-user-information">
+            <div class = "login-user-name">
+              <%= current_user.user_name %>
+            </div>
+            <% if current_user.icon_img.present? %>
+              <%= image_tag current_user.icon_img.url, class: "login-icon-img" %>
+            <% else %>
+              <%= image_tag "https://presite-potepancamp-rails-02.herokuapp.com/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpg", class: "login-icon-img " %>
+            <% end %>              
+          </div>
+          <div class = "toggle-list">
+            <ul>
+              <li><%= link_to "ルーム登録", new_room_path %></li>
+              <li><%= link_to "予約済みルーム一覧", reservations_path %></li>
+              <li><%= link_to "登録済みルーム一覧", rooms_path %></li>
+              <li><%= link_to "設定", users_account_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path %></li>
+            </ul>
+          </div>          
+        <% else %>
+          <div class = "not-login">
+            <ul>
+              <li>
+                <%= link_to "ログイン", user_session_path, class: "header-btn sign_in" %>
+              </li>
+              <li>
+                <%= link_to "登録する", new_user_registration_path, class: "header-btn sign_up" %>
+              </li>
+            </ul>
+          </div>
+
+        <% end %>
+      </div>
+    </header>
+      
     <%= yield %>
+
+    <footer>
+      <p>©️ 2022 POTEPAN.INC.</p>
+    </footer>
+
   </body>
 </html>

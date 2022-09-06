@@ -1,0 +1,47 @@
+<div class = "room-new">
+
+    <div>
+    
+    </div>
+
+    <div class = "room-new-contents">
+
+        <% @room.errors.full_messages.each do |message| %>
+            <%= message %><br>
+        <% end %>
+
+        <%= form_with model: @room do |f| %>    
+            <table class = "table-new">
+                <tr><h3>ルーム情報登録</h3></tr>
+                <tr>
+                    <th><%= f.label :room_name, "ルーム名" %><span class = "must-mark">必須</span></th>
+                    <td><%= f.text_field :room_name, placeholder: "ルーム名を入力", class: "input-area" %></td>
+                </tr>
+                <tr>
+                    <th><%= f.label :room_introduction, "ルーム紹介" %><span class = "must-mark">必須</span></th>
+                    <td><%= f.text_area :room_introduction, placeholder: "ルーム説明を入力", class: "textarea" %></td>
+                </tr>
+                <tr>
+                    <th><%= f.label :room_charge, "ルーム料金" %><span class = "must-mark">必須</span></th>
+                    <td><%= f.number_field :room_charge, placeholder: "1日あたりの料金を入力", class: "input-area" %></td>
+                </tr>
+                <tr>
+                    <th><%= f.label :room_address ,"住所" %><span class = "must-mark">必須</span></th>
+                    <td><%= f.text_field :room_address, placeholder: "住所を入力", class: "input-area" %></td>
+                </tr>
+                <tr>
+                    <th><%= f.label :room_pic, "ルーム画像" %><span class = "must-mark">必須</span></th>
+                    <td><%= f.file_field :room_pic, class: "photo-select-area" %></td>
+                </tr>
+            </table>
+            <div>
+                <ul>
+                    <li><%= f.submit "登録", class: "register-btn" %></li>
+                </ul>
+            </div>
+        <% end %>
+    
+    </div>
+    
+    </div>
+

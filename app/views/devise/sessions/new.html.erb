@@ -1,0 +1,30 @@
+<div class = "login">
+
+  <% if flash[:notice] %>
+      <div class="flash flash-login-error">
+          <%= flash[:notice] %>
+      </div>
+  <% end %>
+
+  <div class = "login-container">
+    <h3>ログイン</h3>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="email">
+        <span class = "must-mark">必須</span> <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "field-email" %>
+      </div>
+
+      <div class="password">
+        <span class = "must-mark">必須</span> <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "field-password" %>
+      </div>
+
+      <div>
+        <%= f.submit "ログイン", class: "login-btn" %>
+      </div>
+    <% end %>
+
+    <%= link_to "新しいアカウントを作成", new_user_registration_path, class: "new-account-create-btn"%>
+
+  </div>
+
+</div>
